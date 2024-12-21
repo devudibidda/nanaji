@@ -1,0 +1,13 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-20.04",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "forwardPorts": [3389],
+  "portsAttributes": {
+    "3389": {
+      "label": "RDP",
+      "onAutoForward": "notify"
+    }
+  }
+}
