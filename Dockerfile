@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 
-# Create a non-root user with UID 1000 and group with GID 1000
+# Create the vscode user and group with specific UIDs/GIDs
 RUN groupadd -g 1000 vscode && useradd -ms /bin/bash -u 1000 -g 1000 vscode
 
 # Install necessary packages
@@ -18,10 +18,8 @@ RUN apt-get update && \
 # Configure xrdp to use XFCE
 RUN sed -i 's/startwm.sh/startxfce4/' /etc/xrdp/startwm.sh
 
-# Switch to the non-root user
+# Set a password for the vscode user (CHANGE THIS PASSWORD!!!)
 USER vscode
-
-# Set a password for the non-root user (CHANGE THIS PASSWORD!)
 RUN echo "vscode:YourStrongPasswordHere" | chpasswd
 
 # Expose the RDP port
