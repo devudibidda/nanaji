@@ -1,18 +1,16 @@
-FROM ghcr.io/linuxserver/webtop:ubuntu-focal
+FROM ubuntu:latest
 
-USER root
-
-# Install xrdp
 RUN apt-get update && \
-    apt-get install -y xrdp xorgxrdp dbus-x11
+    apt-get install -y xrdp xorgxrdp dbus-x11 xfce4 xfce4-goodies
 
-# Configure xrdp to use Xorg
+# Configure xrdp to use XFCE
 RUN sed -i 's/startwm.sh/startxfce4/' /etc/xrdp/startwm.sh
 
-# Set a password for the default user (IMPORTANT - CHANGE THIS!)
+# Set a password for the default user (ABSOLUTELY ESSENTIAL - CHANGE THIS!)
 RUN echo "ubuntu:YourStrongPasswordHere" | chpasswd
 
 # Expose the RDP port
 EXPOSE 3389
 
-USER abc
+# Start xrdp in the foreground (important for Codespaces)
+CMD ["/usr/sbin/xrdp", "-nodaemon"] #Added -nodaemon
