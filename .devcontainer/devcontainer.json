@@ -1,8 +1,8 @@
 {
   "name": "Ubuntu with RDP",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+    "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "../Dockerfile"
   },
   "forwardPorts": [3389],
   "portsAttributes": {
